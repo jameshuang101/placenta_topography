@@ -7,6 +7,8 @@
 
 # Topographic Mapping Framework
 ### Polar Topographic Mapping
+![image](https://github.com/user-attachments/assets/b0944550-7c1f-467e-8342-e864d1baa9d1)
+
 * **Origin selection**: Define a Point of Observation (PO) at the centroid of either the placenta (Cₚ) or uterine cavity (Cᵤ) 
 
 * **Polar coordinates**: For each surface point, compute azimuth (φ) and elevation (θ) angles relative to the PO, then project onto a 2D polar grid (θ vs. φ).
@@ -14,11 +16,18 @@
 * **Surface partition**: Separately map fetal and maternal placental surfaces based on their hemisphere relative to the PO.
 
 ### Planar Topographic Mapping
+![image](https://github.com/user-attachments/assets/65dedd8e-56ed-41d5-b351-19d252201874)
+
 * **Orthogonal slicing**: Generate 2D maps for four planar surfaces—sagittal left/right and coronal anterior/posterior—by measuring radial distance from the PO along fixed image axes.
 
 * **Planar scheme**: Defines coordinate axes on each plane and extracts contiguous surface strips for feature computation.
 
 # Features Extracted
+![image](https://github.com/user-attachments/assets/62b11549-e1bb-4063-9c6d-7fcf5ab54496)
+
+![image](https://github.com/user-attachments/assets/1ca1359b-dd41-41d9-ac0a-6b021573f1c7)
+
+
 ### For both mapping domains, the following feature maps are computed and displayed as 2D images:
 
   * Distance maps: Radial distance from PO to each surface point (fetal vs. maternal sides) 
@@ -34,6 +43,8 @@
   * Local entropy: Texture complexity indicator (higher in heterogeneous, possibly diseased tissue).
 
 # Handling Slice Misalignment & Artifacts
+![image](https://github.com/user-attachments/assets/eb7c789a-9972-4211-81e9-ebed782ce902)
+
 * **Interpolation & registration**: Even/odd slice misalignments are corrected via slice-by-slice registration and interpolation prior to mapping.
 
 * **Polar artifacts**: Residual intra-volume motion induces distortions at the extreme “superior” and “inferior” poles of polar maps.
@@ -44,6 +55,9 @@
 * **Quantitative analysis**: Enables standardized feature vectors for machine learning—e.g., predicting placenta accreta severity or need for hysterectomy.
 
 * **Comparative cases**:
+![image](https://github.com/user-attachments/assets/9f25f0a7-1f69-4ccb-b84d-09198bb2b990)
+
+![image](https://github.com/user-attachments/assets/a93857a9-3a28-44d4-aaf6-70d65684409b)
 
 Normal vs. PAS: In PAS-suspected cases, maps reveal focal thickening and increased heterogeneity on the maternal side.
 
