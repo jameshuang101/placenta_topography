@@ -1,10 +1,68 @@
-# Placenta-Topography
-This project aims to apply image registration and topography techniques to characterize the placenta in prenatal magnetic resonance images (MRI).
+# Background & Motivation
+**MRI in prenatal imaging**: MRI provides high-resolution soft-tissue contrast, increasingly used for placental assessment beyond ultrasound limitations 
 
-The work in this project is directly related to the paper:
-James Huang, Maysam Shahedi, Quyen N. Do, Yin Xi, Matthew A. Lewis, Christina L. Herrera, David Owen, Catherine Y. Spong, Ananth J. Madhuranthakam, Diane M. Twickler, Baowei Fei, "Topography-based feature extraction of the human placenta from prenatal MR images," Proc. SPIE 12464, Medical Imaging 2023: Image Processing, 1246420 
-(3 April 2023); doi: 10.1117/12.2653663
+* **Challenge**: The complex 3D shape of the placenta and intra-volume slice misalignment hinder direct volumetric analysis and feature extraction.
 
-PDF: [SPIE_2023_PlacentaTopography_Paper_Huang.pdf](https://github.com/JamesHuang404/Placenta-Topography/files/11174914/SPIE_2023_PlacentaTopography_Paper_Huang.pdf)
+* **Objective**: Develop a geometry-invariant mapping to a 2D domain, enabling uniform feature computation across subjects and facilitating both visual inspection and downstream machine-learning tasks.
 
-Poster: [SPIE2023_PlacentaTopography_Poster_Huang.pdf](https://github.com/JamesHuang404/Placenta-Topography/files/11174919/SPIE2023_PlacentaTopography_Poster_Huang.pdf)
+# Topographic Mapping Framework
+### Polar Topographic Mapping
+* **Origin selection**: Define a Point of Observation (PO) at the centroid of either the placenta (Cₚ) or uterine cavity (Cᵤ) 
+
+* **Polar coordinates**: For each surface point, compute azimuth (φ) and elevation (θ) angles relative to the PO, then project onto a 2D polar grid (θ vs. φ).
+
+* **Surface partition**: Separately map fetal and maternal placental surfaces based on their hemisphere relative to the PO.
+
+### Planar Topographic Mapping
+* **Orthogonal slicing**: Generate 2D maps for four planar surfaces—sagittal left/right and coronal anterior/posterior—by measuring radial distance from the PO along fixed image axes.
+
+* **Planar scheme**: Defines coordinate axes on each plane and extracts contiguous surface strips for feature computation.
+
+# Features Extracted
+### For both mapping domains, the following feature maps are computed and displayed as 2D images:
+
+  * Distance maps: Radial distance from PO to each surface point (fetal vs. maternal sides) 
+
+  * Thickness map: Local separation between fetal and maternal surfaces 
+
+  * Intensity map: Voxel intensity at the surface point.
+
+  * Local average intensity: Mean intensity over a small neighborhood around each surface point.
+
+  * Local intensity standard deviation: Measures tissue heterogeneity.
+
+  * Local entropy: Texture complexity indicator (higher in heterogeneous, possibly diseased tissue).
+
+# Handling Slice Misalignment & Artifacts
+* **Interpolation & registration**: Even/odd slice misalignments are corrected via slice-by-slice registration and interpolation prior to mapping.
+
+* **Polar artifacts**: Residual intra-volume motion induces distortions at the extreme “superior” and “inferior” poles of polar maps.
+
+# Clinical & Computational Insights
+* **Visualization**: Topographic maps condense complex 3D structure into an easy-to-interpret 2D layout, highlighting regional variations in thickness, perfusion (intensity), and texture (entropy).
+
+* **Quantitative analysis**: Enables standardized feature vectors for machine learning—e.g., predicting placenta accreta severity or need for hysterectomy.
+
+* **Comparative cases**:
+
+Normal vs. PAS: In PAS-suspected cases, maps reveal focal thickening and increased heterogeneity on the maternal side.
+
+# Conclusions & Future Directions
+* **Innovation**: First application of topographic surface analysis to placenta MRI, offering a unified 2D representation for both clinical review and computational modeling.
+
+* **Potential applications**: Computer-assisted diagnosis of placental pathologies, risk stratification, and integration with radiomics pipelines.
+
+* **Extensions**:
+
+  * Automate PO selection via deep learning.
+
+  * Incorporate other modalities (e.g., diffusion MRI) for multiparametric mapping.
+
+  * Validate predictive power on larger, multi-center cohorts.
+
+# Acknowledgements
+This work is directly related to the paper *James Huang, Maysam Shahedi, Quyen N. Do, Yin Xi, Matthew A. Lewis, Christina L. Herrera, David Owen, Catherine Y. Spong, Ananth J. Madhuranthakam, Diane M. Twickler, Baowei Fei, "Topography-based feature extraction of the human placenta from prenatal MR images," Proc. SPIE 12464, Medical Imaging 2023: Image Processing, 1246420 (3 April 2023); doi: 10.1117/12.2653663*
+
+**Paper**: [SPIE_2023_PlacentaTopography_Paper_Huang.pdf](https://github.com/JamesHuang404/Placenta-Topography/files/11174914/SPIE_2023_PlacentaTopography_Paper_Huang.pdf)
+
+**Poster**: [SPIE2023_PlacentaTopography_Poster_Huang.pdf](https://github.com/JamesHuang404/Placenta-Topography/files/11174919/SPIE2023_PlacentaTopography_Poster_Huang.pdf)
