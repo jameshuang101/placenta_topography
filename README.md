@@ -13,6 +13,15 @@ C:\projects\placenta_topography\Data\
     ├── Label_0XX_placenta.mat  % contains mrLabel or plLabel
     └── Label_0XX_uterus.mat    % contains utLabel
 ```
+### Running the Pipeline
+```
+dataFolder = 'C:\projects\placenta_topography\Data';
+saveFolder = 'C:\projects\placenta_topography\Outputs';
+run_topography(dataFolder, saveFolder, true, true);
+```
+  * true (3rd arg) tells it to save all maps and figures.
+
+  * true (4th arg) enables slice-by-slice registration.
 
 # Background & Motivation
 **MRI in prenatal imaging**: MRI provides high-resolution soft-tissue contrast, increasingly used for placental assessment beyond ultrasound limitations 
