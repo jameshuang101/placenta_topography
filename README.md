@@ -54,7 +54,7 @@
 
 * **Quantitative analysis**: Enables standardized feature vectors for machine learning—e.g., predicting placenta accreta severity or need for hysterectomy.
 
-* **Comparative cases**:
+### Comparative cases
 ![image](https://github.com/user-attachments/assets/9f25f0a7-1f69-4ccb-b84d-09198bb2b990)
 
 ![image](https://github.com/user-attachments/assets/a93857a9-3a28-44d4-aaf6-70d65684409b)
