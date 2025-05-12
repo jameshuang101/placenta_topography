@@ -1,3 +1,19 @@
+# Usage
+### Prerequisites
+* **MATLAB R2018b** or later
+  
+* **Image Processing Toolbox**
+  
+* Data arranged under:
+```
+C:\projects\placenta_topography\Data\
+├── Images\
+│   ├── Image_0XX.mat  % each contains mrImage & pixDim
+└── Labels\
+    ├── Label_0XX_placenta.mat  % contains mrLabel or plLabel
+    └── Label_0XX_uterus.mat    % contains utLabel
+```
+
 # Background & Motivation
 **MRI in prenatal imaging**: MRI provides high-resolution soft-tissue contrast, increasingly used for placental assessment beyond ultrasound limitations 
 
